@@ -1,0 +1,292 @@
+// Coloring
+$natural100: #F7F7F7;
+$natural90: #E1E1E1;
+$natural80: #D5D5D5;
+$natural70: #B4B4B4;
+$natural60: #929292;
+$natural50: #7C7C7C;
+$natural40: #5A5A5A;
+$natural30: #383838;
+$natural20: #161616;
+$natural10: #0B0B0B;
+
+$primary100: #b5754b;
+$primary50: #8a5a3b;
+$primary25: #3b291d;
+
+// Typography
+*{
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: $natural100;
+    line-height: normal;
+    letter-spacing: 0.12px;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: $primary100;
+    text-decoration: none;
+    b{
+        font-weight: 700;
+        &:hover{
+            color: $primary50;
+        }
+    }
+    &:hover{
+        font-weight: 700;
+        color: $primary50;
+    }
+}
+b{
+    font-weight: 700;
+}
+small{
+    font-size: 0.8rem;
+    letter-spacing: 0.07px;
+    b{
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+}
+h1,h2,h3,h4,h5{
+    font-weight: 700;
+    color: $natural10;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+h5{
+    font-size: 1.25rem;
+    letter-spacing: 0.2px;
+}
+h4{
+    font-size: 1.6rem;
+    letter-spacing: 0.3px;
+}
+h3{
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+}
+h2{
+    font-size: 2.5rem;
+    letter-spacing: 0.75px;
+}
+h1{
+    font-size: 3rem;
+    letter-spacing: 1px;
+}
+
+// Background
+.bg-primary{
+    background-color: $primary100 !important;
+    *{
+        color: $natural100;
+    }
+}
+
+// Button
+.btn{
+    padding: 0 10px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    letter-spacing: 0.2px;
+    width: 100%;
+    &.btn-primary{
+        background-color: $primary50;
+        border: 1px solid $primary50;
+        color: $natural100 !important;  
+        *{
+            color: $natural100 !important;
+        }
+        &:hover{
+            filter: brightness(90%);
+        }
+    }
+}
+
+// Image Thumbnail
+.img-thumbnail{
+    border: none;
+    padding: 0;
+    width: 100%;
+    box-shadow: 4px 8px 8px 0px rgba($color: $primary25, $alpha: .5);
+}
+
+// Navbar
+header{
+    nav{
+        border-radius: 10px;
+        .navbar-brand{
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 0.2px;
+            margin: 0;
+            padding: 0;
+            line-height: normal;
+            color: $primary25;
+        }
+    
+        a.nav-link{
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: $natural30;
+            line-height: normal;
+            &:hover, &.active{
+                color: $natural80 !important;
+            }
+        }
+    
+        &.bg-primary{
+            box-shadow: 4px 8px 8px 0px rgba($color: $primary50, $alpha: .25);
+        }
+    
+        @media screen and (max-width:720px) {
+            border-radius: 0px !important;
+        }
+    }
+    &.bg-nav{
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        nav{
+            background-color: $primary100 !important;
+        }
+        
+    }
+}
+
+// Banner
+.banner{
+    width: 100%;
+    height: calc(100vh - 75px);
+    position: relative;
+    overflow-x: hidden;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/banner.jpg');
+        background-position: center;
+        background-size: cover;
+        filter: brightness(80%) contrast(125%);
+        -webkit-filter: brightness(80%) contrast(125%);
+    }
+
+    svg{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        min-height: 35vh;
+        min-width: 100%;
+    }
+
+    .container{
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        h1{
+            color: $natural100 !important;
+            font-style: italic;
+            @media screen and (max-width:768px) {
+                font-size: 1.6rem;
+                letter-spacing: 0.3px;
+            }
+            @media screen and (max-width:1024px) and (min-width: 768px) {
+                font-size: 2.5rem;
+                letter-spacing: 0.75px;
+            }
+        }
+    }
+}
+
+// About
+.about{
+    margin-top: -2px;
+    background-color: $primary25;
+    h1{
+        color: $natural100;
+        margin-bottom: 25px;
+    }
+    p{
+        text-align: justify;
+    }
+}
+
+// Goals
+.goals{
+    img.card-img-top{
+        height: 250px;
+    }
+}
+
+// Documentation
+.docum{
+    .nav{
+        .nav-link{
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: $natural50;
+            line-height: normal;
+            border-radius: 10px;
+            margin: 5px 0;
+            &:hover, &.active{
+                color: $natural100 !important;
+                background-color: $primary100;
+            }
+        }
+    }
+    .tab-content{
+        *{
+            color: $natural10;
+        }
+        .figure{
+            background-color: $primary100;
+            border-radius: 2%;
+            .figure-img{
+                height: 60vh;
+                width: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            *{
+                color: $natural100;
+                font-size: 1rem;
+                letter-spacing: 0.2px;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+// Tim
+.tim{
+    .card{
+        *{
+            color: $natural10;
+            text-align: center;
+        }
+        .img-thumbnail{
+            height: 150px;
+            width: 150px;
+            margin: 10px auto;
+            border: 2px solid $natural10;
+            border-radius: 150px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}

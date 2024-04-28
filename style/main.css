@@ -1,0 +1,261 @@
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #F7F7F7;
+  line-height: normal;
+  letter-spacing: 0.12px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #b5754b;
+  text-decoration: none;
+}
+a b {
+  font-weight: 700;
+}
+a b:hover {
+  color: #8a5a3b;
+}
+a:hover {
+  font-weight: 700;
+  color: #8a5a3b;
+}
+
+b {
+  font-weight: 700;
+}
+
+small {
+  font-size: 0.8rem;
+  letter-spacing: 0.07px;
+}
+small b {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: #0B0B0B;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+h5 {
+  font-size: 1.25rem;
+  letter-spacing: 0.2px;
+}
+
+h4 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+}
+
+h3 {
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: 0.75px;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+}
+
+.bg-primary {
+  background-color: #b5754b !important;
+}
+.bg-primary * {
+  color: #F7F7F7;
+}
+
+.btn {
+  padding: 0 10px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  border-radius: 10px;
+  letter-spacing: 0.2px;
+  width: 100%;
+}
+.btn.btn-primary {
+  background-color: #8a5a3b;
+  border: 1px solid #8a5a3b;
+  color: #F7F7F7 !important;
+}
+.btn.btn-primary * {
+  color: #F7F7F7 !important;
+}
+.btn.btn-primary:hover {
+  filter: brightness(90%);
+}
+
+.img-thumbnail {
+  border: none;
+  padding: 0;
+  width: 100%;
+  box-shadow: 4px 8px 8px 0px rgba(59, 41, 29, 0.5);
+}
+
+header nav {
+  border-radius: 10px;
+}
+header nav .navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  color: #3b291d;
+}
+header nav a.nav-link {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #383838;
+  line-height: normal;
+}
+header nav a.nav-link:hover, header nav a.nav-link.active {
+  color: #D5D5D5 !important;
+}
+header nav.bg-primary {
+  box-shadow: 4px 8px 8px 0px rgba(138, 90, 59, 0.25);
+}
+@media screen and (max-width: 720px) {
+  header nav {
+    border-radius: 0px !important;
+  }
+}
+header.bg-nav {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+header.bg-nav nav {
+  background-color: #b5754b !important;
+}
+
+.banner {
+  width: 100%;
+  height: calc(100vh - 75px);
+  position: relative;
+  overflow-x: hidden;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: brightness(80%) contrast(125%);
+  -webkit-filter: brightness(80%) contrast(125%);
+}
+.banner svg {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 35vh;
+  min-width: 100%;
+}
+.banner .container {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.banner .container h1 {
+  color: #F7F7F7 !important;
+  font-style: italic;
+}
+@media screen and (max-width: 768px) {
+  .banner .container h1 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3px;
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .banner .container h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.75px;
+  }
+}
+
+.about {
+  margin-top: -2px;
+  background-color: #3b291d;
+}
+.about h1 {
+  color: #F7F7F7;
+  margin-bottom: 25px;
+}
+.about p {
+  text-align: justify;
+}
+
+.goals img.card-img-top {
+  height: 250px;
+}
+
+.docum .nav .nav-link {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #7C7C7C;
+  line-height: normal;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+.docum .nav .nav-link:hover, .docum .nav .nav-link.active {
+  color: #F7F7F7 !important;
+  background-color: #b5754b;
+}
+.docum .tab-content * {
+  color: #0B0B0B;
+}
+.docum .tab-content .figure {
+  background-color: #b5754b;
+  border-radius: 2%;
+}
+.docum .tab-content .figure .figure-img {
+  height: 60vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.docum .tab-content .figure * {
+  color: #F7F7F7;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+}
+
+.tim .card * {
+  color: #0B0B0B;
+  text-align: center;
+}
+.tim .card .img-thumbnail {
+  height: 150px;
+  width: 150px;
+  margin: 10px auto;
+  border: 2px solid #0B0B0B;
+  border-radius: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}/*# sourceMappingURL=main.css.map */
