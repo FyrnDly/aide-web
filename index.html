@@ -53,15 +53,44 @@
                             <a class="nav-link" href="#tim">Tim</a>
                         </li>
                         <li class="nav-item ms-md-4">
-                            <div class="btn btn-primary">
-                                <a class="nav-link" href="#">Mulai</a>
-                            </div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalLogin">
+                                Mulai
+                            </button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="monitor.html" class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLoginLabel">Halaman Monitoring</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Pastikan Username dan Password Sesuai Untuk Masuk Kehalaman Monitoring Admin</h5>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Masukkan Username">
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword"
+                            placeholder="Masukkan Kata Sandi">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-auto" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary w-auto">Masuk</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
@@ -75,7 +104,7 @@
             </svg>
             <div class="container">
                 <h1 class="text-center">
-                    Mulai Revolusi Pertanian Indonesia dengan Langkah Kecih yang Ramah Lingkungan
+                    Mulai Revolusi Pertanian Indonesia dengan Langkah Kecil yang Ramah Lingkungan
                 </h1>
             </div>
         </div>
