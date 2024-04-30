@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Monitoring Page | AIDE</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Logo -->
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+    <!-- Local Style -->
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="bg-nav fixed-top">
+        <nav class="navbar navbar-expand-md px-4 py-3 rounded-0" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo.png" alt="Logo AIDE">
+                    AIDE
+                </a>
+                <div class="navbar-nav mx-auto d-none d-md-block">
+                    <div class="nav-item">
+                        <span class="nav-link">Halaman Monitoring Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav ms-md-4 ms-auto ms-md-0">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#modalLogout">Keluar</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="index.html" class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLogoutLabel">Kembali Kehalaman Awal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Apakah anda yakin untuk keluar dari halaman monitoring sebagai Admin?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-auto" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger w-auto">Keluar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Chart -->
+        <section class="row justify-content-between align-items-stretch py-md-4 py-2" style="margin-top: 75px;">
+            <h1 class="text-start mb-2">Summary AIDE</h1>
+            <div class="col-lg-8 p-1 chart chart-main">
+                <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
+                    <div class="chart-item" id="weekChart"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-12 p-1 chart">
+                        <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
+                            <div class="chart-item" id="monthChart"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 p-1 chart">
+                        <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
+                            <h5>Persentase Baterai Robot Tersisa</h5>
+                            <div class="chart-item" id="percentageBattery"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule -->
+        <section class="schedule mb-4">
+            <h1 class="text-start mb-2">Automation AIDE</h1>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <caption>
+                            Jadwal Monitoring Robot AIDE
+                        </caption>
+                        <tr>
+                            <th scope="col">Waktu Mulai</th>
+                            <th scope="col" class="text-center">Durasi</th>
+                            <th scope="col" class="text-end">
+                                <!-- Button trigger modal add -->
+                                <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal"
+                                    data-bs-target="#addModal">
+                                    <i class="bi bi-file-earmark-plus"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">08.00</td>
+                            <td class="text-center">1 Jam 30 Menit</td>
+                            <td class="text-end">
+                                <!-- Button trigger modal delete -->
+                                <button type="button" class="btn btn-danger w-auto" data-bs-toggle="modal"
+                                    data-bs-time="08:00" data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash2-fill"></i>
+                                </button>
+                                <!-- Button trigger modal edit -->
+                                <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal"
+                                    data-bs-target="#editModal" data-bs-time="08:00" data-bs-duration=90>
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal add -->
+            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <form action="" class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addModalLabel">Tambahkan Jadwal Pengoperasian AIDE</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-floating mb-3">
+                                <input type="time" class="form-control" id="floatingTime"
+                                    placeholder="Masukkan Waktu Memulai Operasi Robot">
+                                <label for="floatingTime">Waktu</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingDuration"
+                                    placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120">
+                                <label for="floatingDuration">Durasi</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary w-auto"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary w-auto">Tambahkan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal edit -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <form action="" class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">Ubah Waktu Operasi</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-floating mb-3">
+                                <input type="time" class="form-control" id="floatingTime"
+                                    placeholder="Masukkan Waktu Memulai Operasi Robot">
+                                <label for="floatingTime">Waktu</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingDuration"
+                                    placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120">
+                                <label for="floatingDuration">Durasi</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary w-auto"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary w-auto">Tambahkan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal add -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <form action="" class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteModalLabel">Hapus Waktu Operasi</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <span>Apakah anda yakin ingin menghapus jam operasi ini? <br>
+                                Jam pengoperasian robot dapat ditambahkan kembali</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary w-auto"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-danger w-auto">Hapus</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="p-2 bg-primary">
+        <h5 class="text-center">Copyright ©2024 AIDE-IoT | SV IPB</h5>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
+
+    <!-- Google Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {
+            'packages': ['bar', 'gauge']
+        });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(weekChart);
+        google.charts.setOnLoadCallback(monthChart);
+        google.charts.setOnLoadCallback(percentageBattery);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function weekChart() {
+            // Set Data
+            var data = google.visualization.arrayToDataTable([
+                ['Hari', '08.00 WIB', '13.00 WIB', '17.00 WIB'],
+                ['Minggu', 101, 212, 200],
+                ['Senin', 321, 120, 50],
+                ['Selasa', 209, 129, 69],
+                ['Rabu', 103, 102, 20],
+                ['Kamis', 112, 20, 70],
+                ['Jumat', 120, 240, 350],
+                ['Sabtu', 112, 243, 101],
+            ]);
+            // Set Title
+            var options = {
+                chart: {
+                    title: 'Pembersihan Hama Wereng Seminggu Terakhir',
+                    subtitle: 'Tanggal: 21/04/2024 - 27/04/2024',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('weekChart'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+
+        function monthChart() {
+            // Set Data
+            var data = google.visualization.arrayToDataTable([
+                ['Tanggal', 'Hama'],
+                ['01', 513],
+                ['02', 491],
+                ['03', 209],
+                ['04', 321],
+                ['05', 112],
+                ['06', 120],
+                ['07', 112],
+                ['08', 101],
+                ['09', 321],
+                ['10', 209],
+                ['11', 201],
+                ['12', 101],
+                ['13', 321],
+                ['14', 112],
+                ['15', 321],
+                ['16', 120],
+                ['17', 112],
+                ['18', 112],
+                ['19', 120],
+                ['20', 101],
+                ['21', 321],
+                ['22', 112],
+                ['23', 112],
+                ['24', 120],
+                ['25', 209],
+                ['26', 112],
+                ['27', 112],
+                ['28', 120],
+                ['29', 321],
+                ['30', 120],
+                ['31', 90],
+            ]);
+            // Set Title
+            var options = {
+                chart: {
+                    title: 'Pembersihan Hama Wereng Sebulan Terakhir',
+                    subtitle: 'Bulan: April',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('monthChart'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+
+        function percentageBattery() {
+            var data = google.visualization.arrayToDataTable([
+                ['Label', 'Percentage'],
+                ['Battery', 40 + Math.round(60 * Math.random())]
+            ]);
+
+            var options = {
+                redColor: '#FF3E28',
+                redFrom: 0,
+                redTo: 20,
+                yellowColor: '#FFE735',
+                yellowFrom: 20,
+                yellowTo: 60,
+                greenColor: '#A3F161',
+                greenFrom: 60,
+                greenTo: 100,
+                animation: {
+                    duration: 2500,
+                    easing: 'out'
+                },
+                minorTicks: 10,
+
+            };
+
+            var chart = new google.visualization.Gauge(document.getElementById('percentageBattery'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <!-- Edit Modal -->
+    <script>
+        const editModal = document.getElementById('editModal')
+        const deleteModal = document.getElementById('deleteModal')
+        if (editModal) {
+            editModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const time = button.getAttribute('data-bs-time')
+                const duration = button.getAttribute('data-bs-duration')
+
+                // Update the modal's content.
+                const modalTitle = editModal.querySelector('.modal-title')
+                const modalInputTime = editModal.querySelector('.modal-body input#floatingTime')
+                const modalInputDuration = editModal.querySelector('.modal-body input#floatingDuration')
+
+                modalTitle.textContent = `Ubah Waktu Operasi ${time}`
+                modalInputTime.value = time
+                modalInputDuration.value = duration
+            })
+        }
+        if (deleteModal) {
+            deleteModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const time = button.getAttribute('data-bs-time')
+
+                // Update the modal's content.
+                const modalTitle = deleteModal.querySelector('.modal-title')
+                const modalBody = deleteModal.querySelector('.modal-body span')
+
+                modalTitle.textContent = `Hapus Waktu Operasi ${time}`
+                modalBody.textContent =
+                    `Apakah anda yakin ingin menghapus jam operasi ${time}? <br>Jam pengoperasian robot dapat ditambahkan
+                kembali`
+            })
+        }
+    </script>
+</body>
+
+</html>
