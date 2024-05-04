@@ -234,7 +234,7 @@ header{
         z-index: -1;
         width: 100%;
         height: 100%;
-        background-image: url('../assets/banner.jpg');
+        background-image: url('../image/banner.jpg');
         background-position: center;
         background-size: cover;
         filter: brightness(80%) contrast(125%);
@@ -296,6 +296,8 @@ header{
 // Documentation
 .docum{
     .nav{
+        max-height: 75vh;
+        overflow: auto;
         .nav-link{
             font-weight: 700;
             font-size: 1.6rem;
@@ -307,6 +309,9 @@ header{
                 color: $natural100 !important;
                 background-color: $primary100;
             }
+        }
+        @media screen and (max-width:768px) {
+            max-height: 20vh !important;
         }
     }
     .tab-content{
