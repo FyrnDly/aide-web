@@ -82,9 +82,12 @@ function monthChart() {
 }
 
 function percentageBattery() {
+    const batteryId = document.getElementById('percentageBattery');
+    const atributePercentage = Number(batteryId.getAttribute('data-sm-battery'));
+
     var data = google.visualization.arrayToDataTable([
         ['Label', 'Percentage'],
-        ['Battery', 40 + Math.round(60 * Math.random())]
+        ['Battery', atributePercentage]
     ]);
 
     var options = {

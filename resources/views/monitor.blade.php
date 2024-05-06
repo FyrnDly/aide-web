@@ -84,7 +84,7 @@
                     <div class="col-12 p-1 chart">
                         <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
                             <h5>Persentase Baterai Robot Tersisa</h5>
-                            <div class="chart-item" id="percentageBattery"></div>
+                            <div class="chart-item" id="percentageBattery" data-sm-battery={{ $battery }}></div>
                         </div>
                     </div>
                 </div>
@@ -112,20 +112,35 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($operations)
+                        @foreach($operations as $operation => $time)
                         <tr>
-                            <td scope="row">08.00</td>
-                            <td class="text-center">1 Jam 30 Menit</td>
+                            <td scope="row">{{ $time['started'] }}</td>
+                            <td class="text-center">{{ (int)(((int)$time['duration'])/60) }} Jam {{ ((int)$time['duration'])%60 }} Menit</td>
                             <td class="text-end">
                                 <!-- Button trigger modal delete -->
-                                <button type="button" class="btn btn-danger w-auto" data-bs-toggle="modal" data-bs-time="08:00" data-bs-target="#deleteModal">
+                                <button type="button" class="btn btn-danger w-auto" data-bs-toggle="modal" data-bs-time="{{ $time['started'] }}" data-bs-target="#deleteModal" data-bs-id="{{ $time['id'] }}">
                                     <i class="bi bi-trash2-fill"></i>
                                 </button>
                                 <!-- Button trigger modal edit -->
-                                <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-time="08:00" data-bs-duration=90>
+                                <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-time="{{ $time['started'] }}" data-bs-duration={{ $time['duration'] }} data-bs-id="{{ $time['id'] }}">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <h5>Buat Jam Operasi Robot Aide</h5>
+                                <br>
+                                <!-- Button trigger modal add -->
+                                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addModal">
+                                    <i class="bi bi-file-earmark-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -133,18 +148,19 @@
             <!-- Modal add -->
             <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <form action="" class="modal-content">
+                    <form method="POST" action="{{ route('dashboard.store') }}" class="modal-content">
+                        @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="addModalLabel">Tambahkan Jadwal Pengoperasian AIDE</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="form-floating mb-3">
-                                <input type="time" class="form-control" id="floatingTime" placeholder="Masukkan Waktu Memulai Operasi Robot">
+                                <input type="time" class="form-control" id="floatingTime" placeholder="Masukkan Waktu Memulai Operasi Robot" name="started" value="{{ old('started') }}">
                                 <label for="floatingTime">Waktu</label>
                             </div>
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingDuration" placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120">
+                                <input type="number" class="form-control" id="floatingDuration" placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120" name="duration" value="{{ old('duration') }}">
                                 <label for="floatingDuration">Durasi</label>
                             </div>
                         </div>
@@ -159,33 +175,37 @@
             <!-- Modal edit -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <form action="" class="modal-content">
+                    <form method="POST" action="{{ route('dashboard.update') }}" class="modal-content">
+                        @csrf
+                        <input type="hidden" name="id" id="operationId">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="editModalLabel">Ubah Waktu Operasi</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="form-floating mb-3">
-                                <input type="time" class="form-control" id="floatingTime" placeholder="Masukkan Waktu Memulai Operasi Robot">
+                                <input type="time" class="form-control" id="floatingTime" placeholder="Masukkan Waktu Memulai Operasi Robot" name="started">
                                 <label for="floatingTime">Waktu</label>
                             </div>
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingDuration" placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120">
+                                <input type="number" class="form-control" id="floatingDuration" placeholder="Masukkan Durasi Pengoperasian Robot (menit)" max="120" name="duration">
                                 <label for="floatingDuration">Durasi</label>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary w-auto" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary w-auto">Tambahkan</button>
+                            <button type="submit" class="btn btn-primary w-auto">Ubah Data</button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Modal add -->
+            <!-- Modal delete -->
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <form action="" class="modal-content">
+                    <form method="POST" action="{{ route('dashboard.destroy') }}" class="modal-content">
+                        @csrf
+                        <input type="hidden" name="id" id="operationId">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="deleteModalLabel">Hapus Waktu Operasi</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

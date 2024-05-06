@@ -25,4 +25,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Monitor Resource
-Route::resource('dashboard', MonitorController::class)->middleware(['auth', 'verified']);;
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [MonitorController::class, 'index'])->name('dashboard.index');
+    Route::post('/store', [MonitorController::class, 'store'])->name('dashboard.store');
+    Route::post('/update', [MonitorController::class, 'update'])->name('dashboard.update');
+    Route::post('/destroy', [MonitorController::class, 'destroy'])->name('dashboard.destroy');
+})->middleware(['auth', 'verified']);
