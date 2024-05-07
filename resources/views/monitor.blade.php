@@ -69,18 +69,21 @@
         <!-- Chart -->
         <section class="row justify-content-between align-items-stretch py-md-4 py-2" style="margin-top: 75px;">
             <h1 class="text-start mb-2">Summary AIDE</h1>
+            <!-- Weekly -->
             <div class="col-lg-8 p-1 chart chart-main">
                 <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
-                    <div class="chart-item" id="weekChart"></div>
+                    <div class="chart-item" id="weekChart" data-sm-time=@json($timeForWeek) data-sm-week=@json($chartForWeek) data-sm-date-today="{{ $today }}" data-sm-date-week='{{ $aWeekAgo }}'></div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="row">
+                    <!-- Monthly -->
                     <div class="col-12 p-1 chart">
                         <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
-                            <div class="chart-item" id="monthChart"></div>
+                            <div class="chart-item" id="monthChart" data-sm-month=@json($chartForMonth)></div>
                         </div>
                     </div>
+                    <!-- Battery -->
                     <div class="col-12 p-1 chart">
                         <div class="card flex justify-content-center align-items-center rounded h-100 p-md-4 p-2">
                             <h5>Persentase Baterai Robot Tersisa</h5>
