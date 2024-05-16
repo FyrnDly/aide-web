@@ -1,39 +1,51 @@
-<x-guest-layout>
+@extends('layouts.guest')
+@section('title', 'Reset Password')
+
+@section('content')
+<main class="position-absolute top-50 start-50 translate-middle guest-form">
+    <div class="d-flex flex-column my-4">
+        <img src="{{ url('dev/image/logo.png') }}" alt="Logo AIDE" class="mx-auto">
+        <h1 class="title fs-1 text-center">Perbarui Kata Sandi AIDE</h1>
+    </div>
+
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
-
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <span>Masukkan Kata Sandi Baru Untuk Akun Anda</span>
+        <div class="form-floating my-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email') }}" required autofocus autocomplete="username">
+            <label for="email">Email</label>
+            @error('email')
+            <small>{{ $errors->first('email') }}</small>
+            @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="new-password">
+            <label for="password">Kata Sandi</label>
+            @error('password')
+            <small>{{ $errors->first('password') }}</small>
+            @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Masukkan Kata Sandi" required autocomplete="new-password">
+            <label for="password_confirmation">Kata Sandi</label>
+            @error('password_confirmation')
+            <small>{{ $errors->first('password_confirmation') }}</small>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <button type="submit" class="btn btn-primary w-100">Perbarui Kata Sandi</button>
+            </div>
         </div>
     </form>
-</x-guest-layout>
+    @if(session('status') == 'verification-link-sent')
+    <h5>Email Verifikasi yang Baru Telah Dikirim Silahkan Cek Inbox atau Spam</h5>
+    @endif
+</main>
+@endsection

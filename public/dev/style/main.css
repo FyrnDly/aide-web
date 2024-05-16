@@ -340,4 +340,32 @@ header.bg-nav nav {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.guest-form {
+  background-color: #b5754b;
+  min-width: 320px;
+  border-radius: 25px;
+  padding: 25px;
+}
+.guest-form img {
+  width: 75px;
+}
+.guest-form span {
+  color: #F7F7F7;
+  font-size: 1rem;
+  font-weight: 40;
+}
+.guest-form input, .guest-form label {
+  color: #0B0B0B !important;
+}
+.guest-form .container a {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.25rem;
+  color: #F7F7F7;
+  font-weight: 700;
+}
+.guest-form .container a:hover {
+  color: #3b291d;
 }/*# sourceMappingURL=main.css.map */

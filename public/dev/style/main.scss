@@ -375,3 +375,33 @@ header{
         align-items: center;
     }
 }
+
+// Guest Form
+.guest-form{
+    background-color: $primary100;
+    min-width: 320px;
+    border-radius: 25px;
+    padding: 25px;
+    img{
+        width: 75px;
+    }
+    span{
+        color: $natural100;
+        font-size: 1rem;
+        font-weight: 40;
+    }
+    input,label{
+        color: $natural10 !important;   
+    }
+    .container{
+        a{
+            width: fit-content;
+            font-size: 1.25rem;
+            color: $natural100;
+            font-weight: 700;
+            &:hover{
+                color: $primary25;
+            }
+        }
+    }
+}
