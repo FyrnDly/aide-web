@@ -1,27 +1,29 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@extends('layouts.guest')
+@section('title', 'Confirm Password')
+
+@section('content')
+<main class="position-absolute top-50 start-50 translate-middle guest-form">
+    <div class="d-flex flex-column my-4">
+        <img src="{{ url('dev/image/logo.png') }}" alt="Logo AIDE" class="mx-auto">
+        <h1 class="title fs-1 text-center">Halmanan Konfirmasi AIDE</h1>
     </div>
 
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
-
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <span>Konfirmasi Kata Sandi Anda Untuk Lanjut</span>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+            <label for="password">Kata Sandi</label>
+            @error('password')
+            <small>{{ $errors->first('password') }}</small>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <button type="submit" class="btn btn-primary w-100">Konfirmasi</button>
+            </div>
         </div>
     </form>
-</x-guest-layout>
+</main>
+@endsection
