@@ -43,10 +43,12 @@
                     <th scope="col">Waktu Mulai</th>
                     <th scope="col" class="text-center">Durasi</th>
                     <th scope="col" class="text-end">
+                        @if(Auth::user()->role == 'admin' or Auth::user()->role == 'root')
                         <!-- Button trigger modal add -->
                         <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#addModal">
                             <i class="bi bi-file-earmark-plus"></i>
                         </button>
+                        @endif
                     </th>
                 </tr>
             </thead>
@@ -57,6 +59,7 @@
                     <td scope="row">{{ $time['started'] }}</td>
                     <td class="text-center">{{ (int)(((int)$time['duration'])/60) }} Jam {{ ((int)$time['duration'])%60 }} Menit</td>
                     <td class="text-end">
+                        @if(Auth::user()->role == 'admin' or Auth::user()->role == 'root')
                         <!-- Button trigger modal delete -->
                         <button type="button" class="btn btn-danger w-auto" data-bs-toggle="modal" data-bs-time="{{ $time['started'] }}" data-bs-target="#deleteModal" data-bs-id="{{ $time['id'] }}">
                             <i class="bi bi-trash2-fill"></i>
@@ -65,6 +68,7 @@
                         <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-time="{{ $time['started'] }}" data-bs-duration={{ $time['duration'] }} data-bs-id="{{ $time['id'] }}">
                             <i class="bi bi-pencil-square"></i>
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -84,6 +88,7 @@
         </table>
     </div>
 
+    @if(Auth::user()->role == 'admin' or Auth::user()->role == 'root')
     <!-- Modal add -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -160,6 +165,7 @@
             </form>
         </div>
     </div>
+    @endif
 </section>
 @endsection
 
