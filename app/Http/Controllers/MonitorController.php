@@ -153,6 +153,11 @@ class MonitorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'started' => 'required',
+            'duration' => 'required|integer|max:120',
+        ]);
+
         $id = uniqid();
         $this->database
             ->getReference('operations/'.$id)
@@ -186,6 +191,12 @@ class MonitorController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'id' => 'required',
+            'started' => 'required',
+            'duration' => 'required|integer|max:120',
+        ]);
+
         $id = $request['id'];
         $this->database
             ->getReference('operations')
@@ -202,6 +213,10 @@ class MonitorController extends Controller
      */
     public function destroy(Request $request)
     {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
         $id = $request['id'];
         $this->database
             ->getReference('operations')
