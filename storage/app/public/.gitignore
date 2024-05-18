@@ -1,2 +1,6 @@
 *
 !.gitignore
+!team/
+!feature/
+!documentation/
+!about/
