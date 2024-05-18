@@ -7,11 +7,25 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\TeamController;
+use App\Models\About;
+use App\Models\Feature;
+use App\Models\Documentation;
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 
 // Index Home
 Route::get('/', function () {
-    return view('welcome');
+    $abouts = About::get();
+    $features = Feature::get();
+    $documentations = Documentation::get();
+    $teams = Team::get();
+
+    return view('welcome',[
+        'abouts' => $abouts,
+        'features' => $features,
+        'documentations' => $documentations,
+        'teams' => $teams,
+    ]);
 })->name('home');
 
 // Profile Seting

@@ -14,7 +14,6 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Hai, {{ Str::limit(Auth::user()->name, 5, '...') }}
-
                     </a>
                     <ul class="dropdown-menu bg-primary p-2">
                         <li><a class="dropdown-item fs-5" href="{{ route('dashboard.index') }}">Dashboard</a></li>
@@ -22,6 +21,9 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        @if(Auth::user()->role == 'admin' or Auth::user()->role == 'root')
+                        <li><a class="dropdown-item fs-5" href="{{ route('admin.index') }}">Admin</a></li>
+                        @endif
                         <button type="button" class="dropdown-item btn btn-danger fs-5 text-center" data-bs-toggle="modal" data-bs-target="#modalLogout">Keluar</button>
                     </ul>
                 </div>
