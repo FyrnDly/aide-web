@@ -91,6 +91,14 @@ h1{
     letter-spacing: 1px;
 }
 
+// Text Primary
+.text-primary{
+    color: $primary100 !important;
+    *{
+        color: $primary100 !important;
+    }
+}
+
 // Background
 .bg-primary{
     background-color: $primary100 !important;
@@ -104,6 +112,18 @@ h1{
     .modal-body{
         *{
             color: $natural10 !important;
+        }
+    }
+}
+
+// Pagination
+.pagination{
+    .active{
+        background-color: $primary100 !important;
+        color: $natural100 !important;
+        *{
+            background-color: $primary100 !important;
+            color: $natural100 !important;
         }
     }
 }

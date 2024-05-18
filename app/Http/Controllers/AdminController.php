@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
-use App\Models\Documantation;
-use App\Models\Feature;
-use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,7 +13,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        if (Auth::user()->role == 'root') {
+            $users = User::orderBy('name','asc')->whereNot('role','root')->paginate(5);
+        } else {
+            $users = NULL;
+        }
+
+        return view('admin.dashboard',[
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -37,7 +43,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(About $about)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +51,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(About $about)
+    public function edit(string $id)
     {
         //
     }
@@ -53,15 +59,23 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request, string $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        if ($user->role == 'admin') {
+            $user->role = 'guest';
+        } else {
+            $user->role = 'admin';
+        }
+        $user->save();
+
+        return redirect()->route('admin.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(About $about)
+    public function destroy(string $id)
     {
         //
     }

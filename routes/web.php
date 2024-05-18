@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 // Index Home
@@ -31,4 +35,21 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 // Admin Controller
 Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/update/{id}', [AdminController::class, 'update'])->name('admin.update')->middleware('root');
+    // About
+    Route::resource('about', AboutController::class)->except([
+        'create', 'show'
+    ]);
+    // Feature
+    Route::resource('feature', FeatureController::class)->except([
+        'create', 'show'
+    ]);
+    // Documentation
+    Route::resource('documentation', DocumentationController::class)->except([
+        'create', 'show'
+    ]);
+    // Team
+    Route::resource('team', TeamController::class)->except([
+        'create', 'show'
+    ]);
 });
