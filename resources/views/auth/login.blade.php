@@ -15,7 +15,9 @@
 		    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email') }}" required autofocus autocomplete="username">
 		    <label for="email">Email</label>
 		    @error('email')
-		    <small>{{ $errors->first('email') }}</small>
+		    <div class="alert alert-danger my-2" role="alert">
+		        {{ $errors->first('email') }}
+		    </div>
 		    @enderror
 		</div>
 
@@ -23,7 +25,9 @@
 		    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
 		    <label for="password">Kata Sandi</label>
 		    @error('password')
-		    <small>{{ $errors->first('password') }}</small>
+		    <div class="alert alert-danger my-2" role="alert">
+		        {{ $errors->first('password') }}
+		    </div>
 		    @enderror
 		</div>
 

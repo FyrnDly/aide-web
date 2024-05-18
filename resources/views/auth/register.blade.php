@@ -15,7 +15,9 @@
 			<input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Lengkap Anda" value="{{ old('name') }}" required autofocus autocomplete="name">
 			<label for="name">Nama</label>
 			@error('name')
-			<small>{{ $errors->first('name') }}</small>
+			<div class="alert alert-danger my-2" role="alert">
+			    {{ $errors->first('name') }}
+			</div>
 			@enderror
 		</div>
 
@@ -23,7 +25,9 @@
 			<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email') }}" required autofocus autocomplete="username">
 			<label for="email">Email</label>
 			@error('email')
-			<small>{{ $errors->first('email') }}</small>
+			<div class="alert alert-danger my-2" role="alert">
+				{{ $errors->first('email') }}
+			</div>
 			@enderror
 		</div>
 
@@ -31,7 +35,9 @@
 			<input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="new-password">
 			<label for="password">Kata Sandi</label>
 			@error('password')
-			<small>{{ $errors->first('password') }}</small>
+			<div class="alert alert-danger my-2" role="alert">
+			    {{ $errors->first('password') }}
+			</div>
 			@enderror
 		</div>
 
@@ -39,7 +45,9 @@
 			<input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Masukkan Kembali Kata Sandi" required autocomplete="new-password_confirmation">
 			<label for="password_confirmation">Konfirmasi Kata Sandi</label>
 			@error('password_confirmation')
-			<small>{{ $errors->first('password_confirmation') }}</small>
+			<div class="alert alert-danger my-2" role="alert">
+			    {{ $errors->first('password_confirmation') }}
+			</div>
 			@enderror
 		</div>
 

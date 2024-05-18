@@ -18,7 +18,10 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email') }}" required autofocus autocomplete="username">
             <label for="email">Email</label>
             @error('email')
-            <small>{{ $errors->first('email') }}</small>
+            <div class="alert alert-danger my-2" role="alert">
+                {{ $errors->first('email') }}
+            </div>
+
             @enderror
         </div>
 
@@ -26,15 +29,21 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="new-password">
             <label for="password">Kata Sandi</label>
             @error('password')
-            <small>{{ $errors->first('password') }}</small>
-            @enderror
+		    <div class="alert alert-danger my-2" role="alert">
+		        {{ $errors->first('password') }}
+		    </div>
+		    @enderror
+
         </div>
 
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Masukkan Kata Sandi" required autocomplete="new-password">
             <label for="password_confirmation">Kata Sandi</label>
             @error('password_confirmation')
-            <small>{{ $errors->first('password_confirmation') }}</small>
+            <div class="alert alert-danger my-2" role="alert">
+                {{ $errors->first('password_confirmation') }}
+            </div>
+
             @enderror
         </div>
 

@@ -21,7 +21,9 @@
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
                     <label for="name">Nama</label>
                     @error('name')
-                    <small>{{ $errors->first('name') }}</small>
+                    <div class="alert alert-danger my-2" role="alert">
+                        {{ $errors->first('name') }}
+                    </div>
                     @enderror
                 </div>
 
@@ -29,7 +31,9 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email', $user->email) }}" required autofocus autocomplete="username" @disabled($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())>
                     <label for="email">Email</label>
                     @error('email')
-                    <small>Pastikan Alamat Email Baru Anda Belum Terdaftar</small>
+                    <div class="alert alert-danger my-2" role="alert">
+                        {{ $errors->first('email') }}
+                    </div>
                     @enderror
                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <div class="d-flex align-items-center">
@@ -67,7 +71,9 @@
                     <input type="password" class="form-control" id="update_password_current_password" name="current_password" placeholder="Masukkan Kata Sandi Saat Ini Digunakan" required autofocus autocomplete="current_password">
                     <label for="update_password_current_password">Kata Sandi Saat Ini</label>
                     @if($errors->updatePassword->get('current_password'))
-                    <small>Pastikan Kata Sandi Saat Ini Telah Sesuai</small>
+                    <div class="alert alert-danger my-2" role="alert">
+                        {{ $errors->updatePassword->first('current_password') }}
+                    </div>
                     @endif
                 </div>
 
@@ -75,7 +81,10 @@
                     <input type="password" class="form-control" id="update_password_password" name="password" placeholder="Masukkan Kata Sandi Baru" required autofocus autocomplete="new-password">
                     <label for="update_password_password">Kata Sandi Baru</label>
                     @if($errors->updatePassword->get('password'))
-                    <small>Kata Sandi Konfirmasi Tidak Sesuai </small>
+                    <div class="alert alert-danger my-2" role="alert">
+                        {{ $errors->updatePassword->first('password') }}
+
+                    </div>
                     @endif
                 </div>
 
@@ -109,7 +118,9 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required autofocus autocomplete="password">
                     <label for="password">Kata Sandi</label>
                     @if($errors->userDeletion->any())
-                    <small>Pastikan Kata Sandi Anda Masukkan Benar</small>
+                    <div class="alert alert-danger my-2" role="alert">
+                        {{ $errors->userDeletion->first() }}
+                    </div>
                     @endif
                 </div>
 

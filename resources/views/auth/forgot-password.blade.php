@@ -15,7 +15,9 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Alamat Email" value="{{ old('email') }}" required autofocus>
             <label for="email">Email</label>
             @error('email')
-            <small>{{ $errors->first('email') }}</small>
+            <div class="alert alert-danger my-2" role="alert">
+                {{ $errors->first('email') }}
+            </div>
             @enderror
         </div>
 
