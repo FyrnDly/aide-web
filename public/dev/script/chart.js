@@ -26,7 +26,6 @@ function weekChart() {
         }
         dataArray.push(row);
     }
-    console.log(dataArray);
 
     // Set Data
     var data = google.visualization.arrayToDataTable(dataArray);
