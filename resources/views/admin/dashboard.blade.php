@@ -10,7 +10,41 @@
     @endif
 
     <h2 class="text-start">Deskripsi Tentang AIDE</h2>
-    <div id="about"></div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col" class="text-center">Gambar</th>
+                    <th scope="col" class="text-end">
+                        <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                            <i class="bi bi-file-earmark-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($abouts as $about)
+                <tr>
+                    <td scope="row">{{ Str::limit($about->description, 1000, '...') }}</td>
+                    <td class="text-center">
+                        <img src="{{ Storage::url($about->path) }}" alt="{{ $about->path }}" class="img-thumbnail">
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-info w-auto m-1" href="{{ route('about.edit',$about->id) }}">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="3" class="text-center">Belum Menambahkan Deskripsi</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        @include('components.loadmore', ['paginator' => $abouts])
+    </div>
 
     <!-- Modal add -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
@@ -44,7 +78,43 @@
 
 <section class="row justify-content-center align-items-stretch pb-md-4 pb-2">
     <h2 class="text-start">Fitur</h2>
-    <div id='feature'></div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col" class="text-center">Gambar</th>
+                    <th scope="col" class="text-end">
+                        <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#featureModal">
+                            <i class="bi bi-file-earmark-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($features as $feature)
+                <tr>
+                    <td scope="row" class="fw-bolder fs-5">{{ $feature->name }}</td>
+                    <td scope="row">{{ Str::limit($feature->description, 1000, '...') }}</td>
+                    <td class="text-center">
+                        <img src="{{ Storage::url($feature->path) }}" alt="{{ $feature->path }}" class="img-thumbnail">
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-info w-auto m-1" href="{{ route('feature.edit',$feature->id) }}">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="4" class="text-center">Belum Menambahkan Fitur</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        @include('components.loadmore', ['paginator' => $features])
+    </div>
 
     <!-- Modal add -->
     <div class="modal fade" id="featureModal" tabindex="-1" aria-labelledby="featureModalLabel" aria-hidden="true">
@@ -84,7 +154,45 @@
 
 <section class="row justify-content-center align-items-stretch pb-md-4 pb-2">
     <h2 class="text-start">Dokumentasi</h2>
-    <div id="documentation"></div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col" class="text-center">Gambar</th>
+                    <th scope="col" class="text-end">
+                        <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#documentationModal">
+                            <i class="bi bi-file-earmark-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($documentations as $documentation)
+                <tr>
+                    <td scope="row" class="fw-bolder fs-5">{{ $documentation->name }}</td>
+                    <td scope="row">{{ $documentation->date }}</td>
+                    <td scope="row">{{ Str::limit($documentation->description, 1000, '...') }}</td>
+                    <td class="text-center">
+                        <img src="{{ Storage::url($documentation->path) }}" alt="{{ $documentation->path }}" class="img-thumbnail">
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-info w-auto m-1" href="{{ route('documentation.edit',$documentation->id) }}">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">Belum Menambahkan Dokumentasi</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        @include('components.loadmore', ['paginator' => $documentations])
+    </div>
 
     <!-- Modal add -->
     <div class="modal fade" id="documentationModal" tabindex="-1" aria-labelledby="documentationModalLabel" aria-hidden="true">
@@ -129,7 +237,47 @@
 
 <section class="row justify-content-center align-items-stretch pb-md-4 pb-2">
     <h2 class="text-start">Tim</h2>
-    <div id="team"></div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Judul</th>
+                    <th scope="col" class="text-center">NIM</th>
+                    <th scope="col" class="text-center">LinkedIn</th>
+                    <th scope="col" class="text-center">Gambar</th>
+                    <th scope="col">
+                        <button type="button" class="btn btn-primary w-auto" data-bs-toggle="modal" data-bs-target="#teamModal">
+                            <i class="bi bi-file-earmark-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($teams as $team)
+                <tr>
+                    <td scope="row">{{ $team->name }}</td>
+                    <td class="text-center">{{ $team->nim }}</td>
+                    <td class="text-center">
+                        <a href="{{ $team->linkedin }}" target="_blank">{{ $team->linkedin }}</a>
+                    </td>
+                    <td class="text-center">
+                        <img src="{{ Storage::url($team->path) }}" alt="{{ $team->path }}" class="img-thumbnail">
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-info w-auto m-1" href="{{ route('team.edit',$team->id) }}">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">Belum Menambahkan Fitur</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        @include('components.loadmore', ['paginator' => $teams])
+    </div>
 
     <!-- Modal add -->
     <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
@@ -169,7 +317,6 @@
         </div>
     </div>
 </section>
-
 
 @isset($users)
 <section class="row justify-content-center align-items-stretch pb-md-4 pb-2">
@@ -211,7 +358,7 @@
                 @endforelse
             </tbody>
         </table>
-        @include('components.pagination', ['paginator' => $users, 'interval' => 5])
+        @include('components.loadmore', ['paginator' => $users])
     </div>
 
     <!-- Modal Change Role -->
@@ -270,70 +417,13 @@
             }
         })
     }
-
-</script>
-
-<script>
-    $(document).ready(function() {
-        $.get('/admin/about', function(data) {
-            $('#about').html(data);
-        });
-
-        $(document).on('click', '#about .pagination a', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            $.get(url, function(data) {
-                $('#about').html(data);
-            });
-        });
-
-        $.get('/admin/feature', function(data) {
-            $('#feature').html(data);
-        });
-
-        $(document).on('click', '#feature .pagination a', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            $.get(url, function(data) {
-                $('#feature').html(data);
-            });
-        });
-
-        $.get('/admin/documentation', function(data) {
-            $('#documentation').html(data);
-        });
-
-        $(document).on('click', '#documentation .pagination a', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            $.get(url, function(data) {
-                $('#documentation').html(data);
-            });
-        });
-
-        $.get('/admin/team', function(data) {
-            $('#team').html(data);
-        });
-
-        $(document).on('click', '#team .pagination a', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            $.get(url, function(data) {
-                $('#team').html(data);
-            });
-        });
-    });
-
 </script>
 @endsection
+
 @section('add-style')
 <style>
     tr td img.img-thumbnail {
-        max-width: 150px;
+        max-width: 250px;
     }
-
 </style>
-
-
-
 @endsection

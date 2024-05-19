@@ -13,11 +13,7 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        $features = Feature::paginate(1);
-        
-        return view('admin.feature.index',[
-            'features' => $features,
-        ]);
+        // 
     }
 
     /**

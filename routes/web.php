@@ -52,18 +52,18 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::post('/update/{id}', [AdminController::class, 'update'])->name('admin.update')->middleware('root');
     // About
     Route::resource('about', AboutController::class)->except([
-        'create', 'show'
+        'index','create', 'show'
     ]);
     // Feature
     Route::resource('feature', FeatureController::class)->except([
-        'create', 'show'
+        'index','create', 'show'
     ]);
     // Documentation
     Route::resource('documentation', DocumentationController::class)->except([
-        'create', 'show'
+        'index','create', 'show'
     ]);
     // Team
     Route::resource('team', TeamController::class)->except([
-        'create', 'show'
+        'index','create', 'show'
     ]);
 });

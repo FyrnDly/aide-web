@@ -13,11 +13,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $abouts = About::paginate(1);
-        
-        return view('admin.about.index',[
-            'abouts' => $abouts,
-        ]);
+        // 
     }
 
     /**
