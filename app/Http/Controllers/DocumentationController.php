@@ -13,11 +13,7 @@ class DocumentationController extends Controller
      */
     public function index()
     {
-        $documentations = Documentation::orderBy('date')->paginate(1);
-        
-        return view('admin.documentation.index',[
-            'documentations' => $documentations,
-        ]);
+        // 
     }
 
     /**
