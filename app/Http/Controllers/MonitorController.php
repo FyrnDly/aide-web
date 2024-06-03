@@ -18,10 +18,25 @@ class MonitorController extends Controller
     {
         $battery = $this->database->getReference('battery')->getValue();
         $operations = $this->database->getReference('operations')->getSnapshot()->getValue();
+        $logTime = $this->database->getReference('log')->getValue();
+
+        // Check Status Connection
+        $oneHourAgo = date('Y-m-d H:i', strtotime('-1 hour'));
+        if ($logTime >= $oneHourAgo) {
+            $logStatus = TRUE;
+            $logMsg = "Terhubung";
+        } else {
+            $logStatus = FALSE;
+            $logMsg = "Tidak terhubung";
+        }
 
         return view('monitor',[
             'battery' => $battery,
             'operations' => $operations,
+            'logTime' => $logTime,
+            'logStatus' => $logStatus,
+            'logMsg' => $logMsg,
+            'oneHourAgo' => $oneHourAgo,
         ]);
     }
 

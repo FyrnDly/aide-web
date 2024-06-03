@@ -4,6 +4,17 @@
 @section('main')
 <section class="row justify-content-center align-items-stretch py-md-4 py-2" style="margin-top: 75px;">
     <h1 class="text-start mb-2">Summary AIDE</h1>
+    <!-- Status Connection -->
+    <div>
+        <h4 class="d-inline">Status AIDE :</h4>
+        <h5 @class(['alert p-1 d-inline', 'alert-success'=> $logStatus, 'alert-danger'=> !$logStatus]) role="alert">
+            {{ $logMsg }}
+            @if(! $logStatus)
+            , Terakhir Terhubung: {{ $logTime }}
+            @endif
+        </h5>
+    </div>
+
     <!-- Table Schedule -->
     <div class="col-lg-8 p-1 chart chart-main">
         <h4>Jadwal Monitoring Robot AIDE</h4>
