@@ -33,6 +33,7 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required',
             'nim' => 'required',
+            'division' => 'required',
             'linkedin' => 'required|active_url',
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
@@ -47,6 +48,7 @@ class TeamController extends Controller
         Team::create([
             'name' => $request['name'],
             'nim' => $request['nim'],
+            'division' => $request['division'],
             'linkedin' => $request['linkedin'],
             'path' => $path,
         ]);
@@ -80,8 +82,9 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required',
             'nim' => 'required',
+            'division' => 'required',
             'linkedin' => 'required|active_url',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('image')) {
@@ -99,6 +102,7 @@ class TeamController extends Controller
 
         $team->name = $request['name'];
         $team->nim = $request['nim'];
+        $team->division = $request['division'];
         $team->linkedin = $request['linkedin'];
         $team->save();
 
