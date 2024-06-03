@@ -1,8 +1,7 @@
-@extends('layouts.guest')
+@extends('layouts.auth')
 @section('title', 'Forgot Password')
 
 @section('content')
-<main class="position-absolute top-50 start-50 translate-middle guest-form">
     <div class="d-flex flex-column my-4">
         <img src="{{ url('dev/image/logo.png') }}" alt="Logo AIDE" class="mx-auto">
         <h1 class="title fs-1 text-center">Lupa Kata Sandi</h1>
@@ -30,5 +29,4 @@
     @if($status)
     <h5>Email Konfirmasi Telah Dikirim Silahkan Lihat Inbox atau Spam Email Anda</h5>
     @endif
-</main>
 @endsection
