@@ -173,6 +173,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="img-thumbnail" style="background-image: url({{ Storage::url($team->path) }});"></div>
+                            <h6 class="card-subtitle mt-4 text-body-secondary">{{ Str::title($team->division) }}</h6>
                             <h5 class="card-title">{{ Str::title($team->name) }}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">{{ Str::upper($team->nim) }}</h6>
                             <a href="{{ $team->linkedin }}" target="_blank" class="card-link">

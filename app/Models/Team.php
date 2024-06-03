@@ -14,5 +14,6 @@ class Team extends Model
         'nim',
         'path',
         'linkedin',
+        'division'
     ];
 }

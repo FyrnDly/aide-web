@@ -243,6 +243,7 @@
                 <tr>
                     <th scope="col">Judul</th>
                     <th scope="col" class="text-center">NIM</th>
+                    <th scope="col" class="text-center">Divisi</th>
                     <th scope="col" class="text-center">LinkedIn</th>
                     <th scope="col" class="text-center">Gambar</th>
                     <th scope="col">
@@ -257,6 +258,7 @@
                 <tr>
                     <td scope="row">{{ $team->name }}</td>
                     <td class="text-center">{{ $team->nim }}</td>
+                    <td class="text-center">{{ $team->division }}</td>
                     <td class="text-center">
                         <a href="{{ $team->linkedin }}" target="_blank">{{ $team->linkedin }}</a>
                     </td>
@@ -271,7 +273,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="text-center">Belum Menambahkan Fitur</td>
+                    <td colspan="6" class="text-center">Belum Menambahkan Fitur</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -297,6 +299,11 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="nim" placeholder="Masukkan Tanggal Dokumentasi" name="nim" value="{{ old('nim') }}">
                         <label for="nim">Nim</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="division" placeholder="Masukkan Tanggal Dokumentasi" name="division" value="{{ old('division') }}">
+                        <label for="division">Divisi</label>
                     </div>
 
                     <div class="form-floating mb-3">

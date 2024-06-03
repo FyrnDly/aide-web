@@ -339,17 +339,6 @@ header.bg-nav nav {
   background-size: cover;
 }
 
-.chart {
-  height: 37.5vh;
-}
-.chart.chart-main {
-  height: 75vh;
-}
-@media screen and (max-width: 1024px) {
-  .chart {
-    min-height: 50vh;
-  }
-}
 .chart .chart-item {
   width: 100%;
   height: 100%;

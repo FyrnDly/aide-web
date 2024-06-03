@@ -29,6 +29,16 @@
         </div>
 
         <div class="mb-3">
+            <label for="division" class="fs-5 fw-bold mb-1" style="color: white !important">Divisi</label>
+            <input type="text" class="form-control" id="division" placeholder="Masukkan Tanggal Dokumentasi" name="division" value="{{ $team->division }}">
+            @error('division')
+            <div class="alert alert-danger my-2" role="alert">
+                {{ $errors->first('division') }}
+            </div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="linkedin" class="fs-5 fw-bold mb-1" style="color: white !important">LinkedIn</label>
             <input type="text" class="form-control" id="linkedin" placeholder="Masukkan Tanggal Dokumentasi" name="linkedin" value="{{ $team->linkedin }}">
             @error('linkedin')

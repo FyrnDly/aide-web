@@ -1,8 +1,7 @@
-@extends('layouts.guest')
+@extends('layouts.auth')
 @section('title', 'Reset Password')
 
 @section('content')
-<main class="position-absolute top-50 start-50 translate-middle guest-form">
     <div class="d-flex flex-column my-4">
         <img src="{{ url('dev/image/logo.png') }}" alt="Logo AIDE" class="mx-auto">
         <h1 class="title fs-1 text-center">Perbarui Kata Sandi AIDE</h1>
@@ -21,7 +20,6 @@
             <div class="alert alert-danger my-2" role="alert">
                 {{ $errors->first('email') }}
             </div>
-
             @enderror
         </div>
 
@@ -32,8 +30,7 @@
 		    <div class="alert alert-danger my-2" role="alert">
 		        {{ $errors->first('password') }}
 		    </div>
-		    @enderror
-
+            @enderror
         </div>
 
         <div class="form-floating mb-3">
@@ -43,7 +40,6 @@
             <div class="alert alert-danger my-2" role="alert">
                 {{ $errors->first('password_confirmation') }}
             </div>
-
             @enderror
         </div>
 
@@ -56,5 +52,4 @@
     @if(session('status') == 'verification-link-sent')
     <h5>Email Verifikasi yang Baru Telah Dikirim Silahkan Cek Inbox atau Spam</h5>
     @endif
-</main>
 @endsection

@@ -380,13 +380,6 @@ header{
 
 // Chart
 .chart{
-    &.chart-main{
-        height: 75vh;
-    }
-    height: calc(75vh/2);
-    @media screen and (max-width: 1024px) {
-        min-height: 50vh;
-    }
     .chart-item{
         width: 100%;
         height: 100%;
